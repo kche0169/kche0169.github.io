@@ -1,0 +1,142 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 600,
+  "title": "The contribution of the various daimyo to the war effort",
+  "data": {
+    "url": "https://raw.githubusercontent.com/kche0169/FIT3179ForW10/main/Troops%20of%20both%20sides.csv"
+  },
+  "params": [
+    {
+      "name": "Population_Above",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 250,
+        "step": 10,
+        "name": "Minimum Stone High: "
+      }
+    },
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "West", 
+          "East",
+          "neutrality"
+        ],
+        "labels":[
+          "Show All",
+          "West", 
+          "East",
+          "neutrality"
+        ],
+        "name": "Sides Selection: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.Troops/datum.Value > Population_Above"},
+    {"filter": "Continent_selection == null || datum.Belong == Continent_selection"},
+    {
+      "calculate": "datum.Value * 1",
+      "as": "value"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Stone High",
+      "type": "quantitative",
+      "title": "Stone High",
+      "axis": {"tickCount": 3},
+      "scale": {"type": "log", "domain": [1, 1000]}
+    },
+    "y": {
+      "field": "Troops",
+      "type": "quantitative",
+      "title": "Army",
+      "axis": {"tickCount": 6},
+      "scale": {"type": "log", "domain": [1, 1000000]}
+    }
+  },
+  "layer": [
+    {
+      "selection": {
+        "continent_highlight": {
+          "type": "multi",
+          "fields": ["Belong"],
+          "bind": "legend"
+        }
+      },
+      "mark": "circle",
+      "encoding": {
+        "size": {
+          "field": "value",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [10, 100, 150, 200, 500],
+            "range": [1, 50, 150, 200, 300, 400]
+          },
+          "legend": {"format": ".1s"}
+        },
+        "color": {
+          "field": "Belong",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "West", 
+              "East"
+            ],
+            "range": 
+              ["#aacdd1", 
+              "#e1abab"
+            ]
+            
+          }
+        },
+        "opacity": {
+          "condition": {"selection": "continent_highlight", "value": 0.6},
+          "value": 0.2
+        },
+        "tooltip": [
+          {"field": "Belong", "type": "nominal"},
+          {"field": "Name", "type": "nominal"},
+          {"field": "Troops", "type": "quantitative"},
+          {"field": "Attribute", "type": "nominal"}
+
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -12,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": {"field": "Name", "type": "nominal"},
+        "color": {"value": "black"},
+        "opacity": {
+          "condition": {
+            "test": "datum['Name'] == 'Ishida Mitsunari' || datum['Name'] == 'Tokugawa Ieyasu'",
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "Belong", "type": "nominal"},
+          {"field": "Name", "type": "nominal"},
+          {"field": "Troops", "type": "quantitative"},
+          {"field": "Attribute", "type": "nominal"}
+        ]
+      }
+    }
+  ]
+}

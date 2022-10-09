@@ -1,0 +1,100 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Bar chart with text labels. Set domain to make the frame cover the labels.",
+
+  "data": {
+    "values": [
+      {
+        "Military affiliation": "East",
+        "color": "red",
+        "Theoretical Troops": 96800,
+        "Actual Troops": 117500,
+        "Leader": "Tokugawa Ieyasu"
+      },
+      {
+        "Military affiliation": "West",
+        "Theoretical Troops": 77600,
+        "Actual Troops": 31000,
+        "color": "skyblue",
+        "Leader": "Ishida Mitsunari"
+      }
+    ]
+  },
+  "vconcat": [
+    {
+      "encoding": {
+        "y": {"field": "Military affiliation", "type": "nominal"},
+        "x": {
+          "field": "Theoretical Troops",
+          "type": "quantitative",
+          "scale": {"domain": [0, 120000]}
+        },
+        "color": {
+          "field": "Military affiliation",
+          "type": "nominal",
+          "scale": {"domain": ["East", "West"], "range": ["#aacdd1", "#e1abab"]}
+        },
+        "tooltip": [
+          {
+            "field": "Military affiliation",
+            "type": "nominal",
+            "title": "Military affiliation"
+          },
+          {"field": "Leader", "type": "nominal", "title": "Leader"}
+        ]
+      },
+      "layer": [
+        {"mark": "bar"},
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 3
+          },
+          "encoding": {
+            "text": {"field": "Theoretical Troops", "type": "quantitative"}
+          }
+        }
+      ]
+    },
+    {
+      "encoding": {
+        "y": {"field": "Military affiliation", "type": "nominal"},
+        "x": {
+          "field": "Actual Troops",
+          "type": "quantitative",
+          "scale": {"domain": [0, 120000]}
+        },
+        "color": {
+          "field": "Military affiliation",
+          "type": "nominal",
+          "scale": {"domain": ["East", "West"], "range": ["#aacdd1", "#e1abab"]}
+        },
+        "tooltip": [
+          {
+            "field": "Military affiliation",
+            "type": "nominal",
+            "title": "Military affiliation"
+          },
+          {"field": "Leader", "type": "nominal", "title": "Leader"}
+        ]
+      },
+      "layer": [
+        {"mark": "bar"},
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 3
+          },
+          "encoding": {
+            "text": {"field": "Actual Troops", "type": "quantitative"}
+          }
+        }
+      ]
+    }
+  ],
+  "config": {}
+}

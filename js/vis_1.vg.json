@@ -1,0 +1,54 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+  "text": "Stone High",
+  "frame": "bounds"
+},
+"data": {
+  "values": [
+      {"Name": "德川家康", "period": "1599", "point": 256},
+      {"Name": "毛利辉元", "period": "1599", "point": 121},
+      {"Name": "上杉景胜", "period": "1599", "point": 120},
+      {"Name": "前田利长", "period": "1599", "point": 84},
+      {"Name": "岛津义弘", "period": "1599", "point": 60},
+      {"Name": "伊达政宗", "period": "1599", "point": 59},
+      {"Name": "宇喜多秀家", "period": "1599", "point": 57},
+      {"Name": "佐竹义宣", "period": "1599", "point": 54},
+      {"Name": "小早川秀秋", "period": "1599", "point": 36},
+      {"Name": "德川家康", "period": "1601", "point": 400},
+      {"Name": "毛利辉元", "period":"1601", "point": 37},
+      {"Name": "上杉景胜", "period": "1601", "point": 30},
+      {"Name": "前田利长", "period": "1601", "point": 119},
+      {"Name": "岛津义弘", "period": "1601", "point": 0},
+      {"Name": "伊达政宗", "period": "1601", "point": 62},
+      {"Name": "宇喜多秀家", "period": "1601", "point": 0},
+      {"Name": "佐竹义宣", "period": "1601", "point": 20},
+      {"Name": "小早川秀秋", "period": "1601", "point": 51}
+  ]
+},
+"transform": [{
+      "sort": [
+          {"field": "point", "order": "descending"}
+
+  ],
+"window": [{
+  "op": "rank",
+  "as": "rank"
+  }],
+"groupby": ["period"]
+}],
+"mark": {"type": "line", "orient": "vertical"},
+"encoding": {
+  "x": {"field": "period", "type": "ordinal"},
+  "y": {"field": "rank", "type": "ordinal"},
+"color": {
+"field": "Name", "type": "nominal",
+"scale": {
+    "domain": ["德川家康", "毛利辉元", "上杉景胜", "前田利长", "岛津义弘", "伊达政宗", "宇喜多秀家" , "佐竹义宣", "小早川秀秋"],
+    "range": ["black", "#127153", "#C91A3C", "#0C71AB","red","brown", "blue", "pink","orange"]
+  }
+  }
+},
+
+"config": {}
+}

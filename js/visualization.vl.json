@@ -1,0 +1,25 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 1000,
+  "height": 800,
+  "title": "关原之战东西军势力对比",
+  "projection": {"type": "equirectangular"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/kche0169/FIT3179ForW10/main/ne_10m_admin_1_states_provinces%20(1).json",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_10m_admin_1_states_provinces"
+        }
+      },
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+    }
+  ],
+  "encoding": {
+    "tooltip": [
+      {"field": "properties.NAME", "type": "nominal", "title": "Country"}
+    ]
+  },
+  "config": {}
+}
