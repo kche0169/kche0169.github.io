@@ -25,14 +25,12 @@
         "options": [
           null,
           "West", 
-          "East",
-          "neutrality"
+          "East"
         ],
         "labels":[
           "Show All",
           "West", 
-          "East",
-          "neutrality"
+          "East"
         ],
         "name": "Sides Selection: "
       }
