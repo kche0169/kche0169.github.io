@@ -41,7 +41,7 @@
     {"filter": "Continent_selection == null || datum.Belong == Continent_selection"},
     {
       "calculate": "datum.Value * 1",
-      "as": "value"
+      "as": "contribute to the effort"
     }
   ],
   "encoding": {
