@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A simple pie chart with labels.",
+  "title": "The actual composition of the Western army",
+  "data": {
+    "values": [
+      {"category": "Participants", "Army numbers": 31000, "Percentage": "40%"},
+      {"category": "Non-attendee", "Army numbers": 26600, "Percentage": "34%"},
+      {"category": "Traitors", "Army numbers": 20000, "Percentage": "25%"}
+    ]
+  },
+  "encoding": {
+    "theta": {"field": "Army numbers", "type": "quantitative", "stack": true},
+    "color": {
+      "field": "category",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Traitors", "Non-attendee", "Participants"],
+        "range": ["#8F77B5", "#91989F", "#e1abab"]
+      }
+    },
+    "tooltip": [
+      {"field": "category", "type": "nominal", "title": "category"},
+      {"field": "Percentage", "type": "nominal", "title": "Percentage"}
+    ]
+  },
+  "layer": [
+    {"mark": {"type": "arc", "outerRadius": 80}},
+    {
+      "mark": {"type": "text", "radius": 90},
+      "encoding": {"text": {"field": "Percentage", "type": "nominal"}}
+    }
+  ],
+  "config": {}
+}

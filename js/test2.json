@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
-  "height": 600,
+  "width": 400,
+  "height": 300,
   "title": "The contribution of the various daimyo to the war effort",
   "data": {
     "url": "https://raw.githubusercontent.com/kche0169/FIT3179ForW10/main/Troops%20of%20both%20sides.csv"
@@ -41,7 +41,7 @@
     {"filter": "Continent_selection == null || datum.Belong == Continent_selection"},
     {
       "calculate": "datum.Value * 1",
-      "as": "contribute to the effort"
+      "as": "value"
     }
   ],
   "encoding": {

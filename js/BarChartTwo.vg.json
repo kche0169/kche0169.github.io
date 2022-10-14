@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Bar chart with text labels. Set domain to make the frame cover the labels.",
-
+  
   "data": {
     "values": [
       {
@@ -9,7 +9,9 @@
         "color": "red",
         "Theoretical Troops": 96800,
         "Actual Troops": 117500,
-        "Leader": "Tokugawa Ieyasu"
+        "Leader": "Tokugawa Ieyasu",
+        "Theoretical Stone High":500,
+        "Actual Stone High": 158
       },
       {
         "Military affiliation": "West",
