@@ -1,43 +1,270 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battle of Sekigahara</title>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.8"></script>
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
-    <title>FIT3179 Data Visualisation Week 10 Homework kche0169</title>
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+
+
 </head>
 <body>
-  <h1>The first Map</h1>
-<!--   <div id="symbol_map"></div> -->
-  <h1>The second interactive vis</h1>
-  <div id="me"></div>
-  <h1>The third vis</h1>
-  <div id="me3"></div>
 
-  <script type="text/javascript">
+ <div class="page">
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1 style="text-align: center;">Battle of Sekigahara</h1>
+        <p>The unprecedented battle that divided the world in 1600 ended after only half a day. It was incomprehensible. This time let us explain the reason for this in the form of data.</p>
+        <!-- <p>The Battle of Sekigahara, which took place at the end of the Warring States period in 1600, was a battle between the eastern and western lords of Japan, led by Tokugawa Ieyasu and Ishida Mitsunari, which destroyed the greatest opposition to Tokugawa and is recognised as the founding event of the Edo Shogunate (Tokugawa Shogunate), which later influenced and ruled Japan for 265 years.</p> -->
+      </div>
+    </div>
+    <!-- end pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+
+            <h2>
+                An overview of the Battle of Sekigahara
+            </h2>
+        </div>
+      
+    </div>
+    <div class="pure-g">
+
+        <div class="pure-u-1-1">
+            <div id="vis1" class="vis-container" style="text-align: center;"></div>
+        </div>
+        <div class="pure-u-1-1">
+            <p>The Battle of Sekigahara, which took place at the end of the Warring States period in 1600, was a battle between the eastern and western lords of Japan, led by Tokugawa Ieyasu and Ishida Mitsunari, which destroyed the greatest opposition to Tokugawa and is recognised as the founding event of the Edo Shogunate (Tokugawa Shogunate), which later influenced and ruled Japan for 265 years.</p>
+            <!-- <p>The unprecedented battle that divided the world in 1600 ended after only half a day. It was incomprehensible. This time let us explain the reason for this in the form of data.</p> -->
+        </div>
+        <!-- <div class="pure-u-1-2">
+            <div class="description description-left">
+                <p>22222</p>
+            </div>
+        </div> -->
+    </div>
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+            <h2 style="color: #0C0C0C;">Comparison of the <span style="color: #aacdd1;">Eastern</span> and <span style="color: #e1abab;">Western</span> Armies</h2>
+            <p>Let us first look at the comparison of the numbers of troops on both sides. Numbers of troops played a pivotal role in the war. </p>
+        </div>
+        <div class="pure-u-1-2">
+          <div class="description description-left">
+            
+            <h3>Even before the war started, the East had 20,000 more men!</h3>
+            <p>The graph on the right shows the number of people involved in the war and the amount of food produced in each year by the East and West armies. (A stone high is a unit for recording the amount of grain produced in a year)</p>
+            
+            <h3>The gap in troop strength had actually ballooned by a factor of four.</h3>
+            <p>By way of comparison, we find that the Eastern army was more numerous, outnumbering the Western army by over 20,000 men. This was compounded by the fact that several daimyo who later fell away took tens of thousands of men with them, adding to the lack of strength of the Western army.</p>
+        </div>
+        </div>
+        <!-- <div class="pure-u-2-3">
+          <div id="vis1" class="vis-container"></div>
+        </div> -->
+        <div class="pure-u-1-2">
+            <div id="vis2"  class="vis-container"></div>
+            <div id="vis5"  class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-2">
+            <div id="vis5"  class="vis-container"></div>
+        </div> 
+    </div>
+    <!-- end pure grid group -->
+
     
-    var spec2 = "js/vis_2.vg.json";
     
-    var spec1 = "js/test2.json";
-    var spec4 = "js/BarChartTwo.vg.json";
+    <div class="pure-g"> 
+        <div class="img1" style="text-align: center;">
+            <a href="https://zh.wikipedia.org/zh-cn/%E9%97%9C%E5%8E%9F%E4%B9%8B%E6%88%B0#/media/File:Sekigaharascreen.jpg">
+                <img src="data/Sekigaharascreen.jpg" width="800px" alt="A graph of battle">
+            </a>
+
+            <div class="pure-u-1-1 small-font">
+                <div>
+                    <p style="color: #828282;">
+                        The Guangyuan Combined War Figure Screen
+                    </p>
+
+                    <p style="color: #828282;">
+
+                        <a href="https://zh.wikipedia.org/zh-cn/%E9%97%9C%E5%8E%9F%E4%B9%8B%E6%88%B0#/media/File:Sekigaharascreen.jpg">
+                            Click here to see a large high resolution image
+                        </a>
+                    </p>
+                </div>
+            </div>
+        
+        </div>
+    </div>
     
-    vegaEmbed('#symbol_map', spec2).then(function(result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    }).catch(console.error);
-    vegaEmbed('#me', spec1).then(function(result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    }).catch(console.error);
+    <!-- pure grid group -->
+    <div class="pure-g">
+
+      <div class="pure-u-1-1">
+        <h2>War performance of each daimyo</h2>
+        <p>So who is the MVP of this battle? Who has contributed the most to this battle? In the bubble chart below you can visually see who the top contributors are. (The larger the circle, the greater the contribution, and vice versa)</p>
+      </div>
+      <div class="pure-u-1-3">
+        <div class="description description-left">
+          
+          <p>In general, every 10,000 stone high could support 250 professional soldiers.</p>
+          <p>By way of comparison, most of the western daimyo did not bring out their full strength, and only a few daimyo, such as Ishida Mitsunari, assembled a considerable army, but it was not enough compared to the eastern army.</p>
+          <p>For example, Ieyasu Tokugawa had a total of 60,000 troops, excluding 30,000 from Momochiyama and 30,000 from Hidetada on the way.</p>
+        </div>
+      </div>
+      <div class="pure-u-1-3">
+        <div id="vis4"  class="vis-container"></div>
+      </div>
+      <!-- <div class="pure-u-1-3">
+        <div id="vis3"  class="vis-container"></div>
+      </div> -->
     
-    vegaEmbed('#me3', spec4).then(function(result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    }).catch(console.error);
-  </script>
-  </script>
+      <!-- <div class="pure-g">
+        <div class="pure-u-2-3">
+          <div id="vis2"  class="vis-container"></div>
+        </div> -->
+        <!-- <div class="pure-u-1-3">
+            <div class="description description-left">
+              <h2>This is the first section</h2>
+              <p>The first column is used for description while the next two columns are merged and used for visualisation. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat sed. </p>
+            </div>
+          </div>
+        <div class="pure-u-1-3">
+          <div class="description description-right">
+            <h2>This is the second section</h2>
+            <p>Similar to the previous section, but the colum partition is swapped. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat sed. Egestas purus viverra accumsan in nisl.</p>
+          </div>
+        </div> -->
+      
+    </div>
+
+    <!-- <div class="pure-g">
+        
+        <div class="pure-u-1-3">
+
+                <div class="description description-left">
+                  <h2>This is the first section</h2>
+                  <p>The first column is used for description while the next two columns are merged and used for visualisation. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat sed. </p>
+                </div>
+          
+      
+        </div>
+    
+        <div class="pure-u-2-3">
+            <div class="description description-right">
+              <h2>This is the second section</h2>
+              <p>Similar to the previous section, but the colum partition is swapped. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat sed. Egestas purus viverra accumsan in nisl.</p>
+            </div>
+
+        </div>
+    </div> -->
+    <!-- end pure grid group -->
+
+
+    <div class="pure-g">
+        
+        <div class="pure-u-1-1">
+
+                <div class="description description-left">
+                  <h2>The outcome of the war</h2>
+                  <h3>- the reward of the eastern daimyo and the disposition of the western daimyo</h3>
+                  <p>The first column is used for description while the next two columns are merged and used for visualisation. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat sed. </p>
+                </div>
+          
+      
+        </div>
+    
+        <div class="pure-u-2-3">
+            <div class="description description-right">
+              <h3>Who got the biggest pay rise after the battle?</h3>
+              <p>Similar to the previous section, but the colum partition is swapped. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat sed. Egestas purus viverra accumsan in nisl.</p>
+            </div>
+
+        </div>
+        <div class="pure-u-2-3">
+            <div class="description description-left">
+              <h3>Who lost the most after the battle?</h3>
+              <p>Similar to the previous section, but the colum partition is swapped. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat sed. Egestas purus viverra accumsan in nisl.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="pure-g">
+        
+        <div class="pure-u-1-1">
+            <h2>Interesting stories about war</h2>
+        </div>
+        <div class="pure-u-1-2">
+
+                <div class="description description-left">
+                  
+                  <h3>Some Stories</h3>
+                  <p>TBC</p>
+                </div>
+          
+      
+        </div>
+    
+        <div class="pure-u-1-2">
+            <div class="description description-right">
+              <h3>TBC</h3>
+              <p>TBC</p>
+            </div>
+
+        </div>
+    </div>
+
+
+  
+    <div class="pure-g">
+      <div class="pure-u-1-1 small-font">
+        <p>This visualisation is created by <a href="https://github.com/kche0169" target="_blank">Kaiyong Chen</a>. The datasource is <a href="#"" target="_blank">some data repository online</href>.</p>
+      </div>
+    </div>
+
+    
+
+  </div> <!-- end page -->
+   
+<script type="text/javascript">
+  var specVis1 = "js/vis_2.vg.json";
+  var specVis2= "js/BarChartTwo.vg.json";
+  var specVis3= "js/vis_1.vg.json";
+  var specVis4= "js/test2.json";
+  var specVis5= "js/pie_chart.json";
+
+  vegaEmbed('#vis1', specVis1, {"actions": false});
+  
+   vegaEmbed('#vis2', specVis2, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  vegaEmbed('#vis3', specVis3, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  vegaEmbed('#vis4', specVis4, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  vegaEmbed('#vis5', specVis5, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+</script>
 </body>
 </html>
