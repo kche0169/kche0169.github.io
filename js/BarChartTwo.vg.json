@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Bar chart with text labels. Set domain to make the frame cover the labels.",
-  
+  "title":"Comparison of the number of troops in the East and West armies",
   "data": {
     "values": [
       {
@@ -25,7 +25,7 @@
   "vconcat": [
     {
       "encoding": {
-        "y": {"field": "Military affiliation", "type": "nominal"},
+        "y": {"field": "Military affiliation", "type": "nominal","title":null},
         "x": {
           "field": "Theoretical Troops",
           "type": "quantitative",
@@ -62,7 +62,7 @@
     },
     {
       "encoding": {
-        "y": {"field": "Military affiliation", "type": "nominal"},
+        "y": {"field": "Military affiliation", "type": "nominal","title":null},
         "x": {
           "field": "Actual Troops",
           "type": "quantitative",
