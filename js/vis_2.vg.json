@@ -26,12 +26,12 @@
       "color": {
         "field": "Belong",
         "type": "nominal",
-        "scale": {"domain": ["West", "East","neutrality","Toyotomi Territory","Ishida Mitsunari Territory","Tokugawa Ieyasu Territory"], 
-        "range": ["#aacdd1", "#e1abab","#BDC0BA","#BDC0BA","#0F2540","#7f3333"]}
+        "scale": {"domain": ["Western Army", "Eastern Army","neutrality","Ishida Mitsunari Territory","Tokugawa Ieyasu Territory"], 
+        "range": ["#aacdd1", "#e1abab","#BDC0BA","#0F2540","#7f3333"]}
       },
       "tooltip": [
         {"field": "properties.name", "type": "nominal", "title": "State"},
-        {"field": "Belong", "type": "nominal", "title": "Belong"}
+        {"field": "Belong", "type": "nominal", "title": "Group"}
       ]
     }}
     
