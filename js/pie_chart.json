@@ -16,7 +16,7 @@
       "type": "nominal",
       "scale": {
         "domain": ["Traitors", "Non-attendee", "Participants"],
-        "range": ["#8F77B5", "#91989F", "#e1abab"]
+        "range": ["#8F77B5", "#91AD70", "#aacdd1"]
       }
     },
     "tooltip": [

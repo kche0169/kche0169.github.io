@@ -24,7 +24,7 @@
       "type": "nominal",
       "scale": {
         "domain": ["Eastern Army", "Western Army"],
-        "range": ["#aacdd1", "#e1abab"]
+        "range": ["#e1abab","#aacdd1"]
       }
     },
     "tooltip": [

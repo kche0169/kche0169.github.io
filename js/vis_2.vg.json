@@ -27,7 +27,7 @@
         "field": "Belong",
         "type": "nominal",
         "scale": {"domain": ["West", "East","neutrality","Toyotomi Territory","Ishida Mitsunari Territory","Tokugawa Ieyasu Territory"], 
-        "range": ["#aacdd1", "#e1abab","#BDC0BA","#9F353A","#0F2540","#7f3333"]}
+        "range": ["#aacdd1", "#e1abab","#BDC0BA","#BDC0BA","#0F2540","#7f3333"]}
       },
       "tooltip": [
         {"field": "properties.name", "type": "nominal", "title": "State"},
