@@ -1,0 +1,43 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Comparison of the troops in the East and West armies",
+  "width": "container",
+  "data": {
+    "values": [
+      {"category": "Theoretical Army", "group": "Eastern Army", "value": 96800},
+      {"category": "Theoretical Army", "group": "Western Army", "value": 77600},
+      {"category": "Actual Army", "group": "Eastern Army", "value": 117500},
+      {"category": "Actual Army", "group": "Western Army", "value": 31000}
+    ]
+  },
+  "encoding": {
+    "y": {"field": "category", "title": null},
+    "x": {
+      "field": "value",
+      "type": "quantitative",
+      "title": "The numbers of troops",
+      "scale": {"domain": [0, 140000]}
+    },
+    "yOffset": {"field": "group"},
+    "color": {
+      "field": "group",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Eastern Army", "Western Army"],
+        "range": ["#aacdd1", "#e1abab"]
+      }
+    },
+    "tooltip": [
+      {"field": "group"},
+      {"field": "value", "title": "The numbers of troops"}
+    ]
+  },
+  "layer": [
+    {"mark": "bar"},
+    {
+      "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 3},
+      "encoding": {"text": {"field": "value", "type": "quantitative"}}
+    }
+  ],
+  "config": {}
+}
