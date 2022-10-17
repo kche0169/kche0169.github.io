@@ -21,6 +21,7 @@
     },
     "tooltip": [
       {"field": "category", "type": "nominal", "title": "category"},
+      {"field": "Army numbers", "type": "nominal", "title": "Army numbers"},
       {"field": "Percentage", "type": "nominal", "title": "Percentage"}
     ]
   },
