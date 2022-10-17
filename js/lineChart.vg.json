@@ -1,0 +1,97 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Multi-series line chart with labels and interactive highlight on hover.  We also set the selection's initial value to provide a better screenshot",
+  "width": "container",
+  "title": "Changes in the strength of the warring daimyo after the war",
+  "data": {
+    "values": [
+      {"daimyo": "Tokukawa", "year": "1599", "Stone High": 256},
+      {"daimyo": "Tokukawa", "year": "1600", "Stone High": 400},
+      {"daimyo": "Tokukawa", "year": "1601", "Stone High": 400},
+      {"daimyo": "Tokukawa", "year": "1615", "Stone High": 800, "b": 800},
+      {"daimyo": "Western Army", "year": "1599", "Stone High": 270},
+      {"daimyo": "Western Army", "year": "1600", "Stone High": 158},
+      {"daimyo": "Western Army", "year": "1601", "Stone High": 56},
+      {"daimyo": "Western Army", "year": "1615", "Stone High": 56, "b": 56},
+      {
+        "daimyo": "Eestern Army(Not counting Tokugawa)",
+        "year": "1599",
+        "Stone High": 232
+      },
+      {
+        "daimyo": "Eestern Army(Not counting Tokugawa)",
+        "year": "1600",
+        "Stone High": 285
+      },
+      {
+        "daimyo": "Eestern Army(Not counting Tokugawa)",
+        "year": "1601",
+        "Stone High": 917
+      },
+      {
+        "daimyo": "Eestern Army(Not counting Tokugawa)",
+        "year": "1615",
+        "Stone High": 865,
+        "b": 865
+      }
+    ]
+  },
+  "transform": [{"filter": "datum.daimyo!=='Fukushima'"}],
+  "encoding": {
+    "x": {
+      "timeUnit": "year",
+      "field": "year",
+      "type": "ordinal",
+      "title": null
+    },
+    "y": {"field": "Stone High", "type": "quantitative", "title": "Stone High"},
+    "color": {
+      "condition": {
+        "param": "hover",
+        "field": "daimyo",
+        "type": "nominal",
+        "legend": null,
+        "scale": {
+          "domain": [
+            "Tokukawa",
+            "Western Army",
+            "Eestern Army(Not counting Tokugawa)"
+          ],
+          "range": ["#7f3333", "#aacdd1", "#e1abab"]
+        }
+      },
+      "value": "grey"
+    },
+    "tooltip": [{"field": "Stone High"}],
+    "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.2}
+  },
+  "layer": [
+    {
+      "description": "transparent layer to make it easier to trigger selection",
+      "params": [
+        {
+          "name": "hover",
+          "value": [{"daimyo": "Tokukawa"}],
+          "select": {"type": "point", "fields": ["daimyo"], "on": "mouseover"}
+        }
+      ],
+      "mark": {"type": "line", "strokeWidth": 8, "stroke": "transparent"}
+    },
+    {"mark": "line"},
+    {"mark": "circle"},
+    {
+      "encoding": {
+        "x": {"datum": {"year": "1615"}},
+        "y": {"field": "b", "type": "quantitative"}
+      },
+      "layer": [
+        {"mark": {"type": "circle"}},
+        {
+          "mark": {"type": "text", "align": "left", "dx": 4},
+          "encoding": {"text": {"field": "daimyo", "type": "ordinal"}}
+        }
+      ]
+    }
+  ],
+  "config": {"view": {"stroke": null}}
+}
