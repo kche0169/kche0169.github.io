@@ -103,5 +103,5 @@ theme: cactus
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/kche0169/kche0169.git
+  repo: https://github.com/kche0169/kche0169.github.io.git
   branch: gh-pages
