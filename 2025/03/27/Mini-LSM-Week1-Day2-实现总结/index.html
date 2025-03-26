@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="问题背景在 LSM 树中，数据被组织成多个层级的存储结构，通常包括内存中的 MemTable 和磁盘上的多个层级的文件（如 LevelDB 中的 SSTable）。当 MemTable 达到一定大小时，它会被冻结并写入磁盘，形成一个新的层级文件。在 MemTable 被冻结并写入磁盘之后，如果其中的键（key）在后续的层级文件中被删除，那么在扫描（scan）数据时，这些已经被删除的键仍然有可能被读">
+    <meta name="description" content="最近在做Mini-LSM，在实现过程中，遇到了些小问题 问题背景在 LSM 树中，数据被组织成多个层级的存储结构，通常包括内存中的 MemTable 和磁盘上的多个层级的文件（如 LevelDB 中的 SSTable）。当 MemTable 达到一定大小时，它会被冻结并写入磁盘，形成一个新的层级文件。在 MemTable 被冻结并写入磁盘之后，如果其中的键（key）在后续的层级文件中被删除且不做合">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mini-LSM [Week1][Day2]实现总结">
 <meta property="og:url" content="http://example.com/2025/03/27/Mini-LSM-Week1-Day2-%E5%AE%9E%E7%8E%B0%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Kche&#39;s Blog">
-<meta property="og:description" content="问题背景在 LSM 树中，数据被组织成多个层级的存储结构，通常包括内存中的 MemTable 和磁盘上的多个层级的文件（如 LevelDB 中的 SSTable）。当 MemTable 达到一定大小时，它会被冻结并写入磁盘，形成一个新的层级文件。在 MemTable 被冻结并写入磁盘之后，如果其中的键（key）在后续的层级文件中被删除，那么在扫描（scan）数据时，这些已经被删除的键仍然有可能被读">
+<meta property="og:description" content="最近在做Mini-LSM，在实现过程中，遇到了些小问题 问题背景在 LSM 树中，数据被组织成多个层级的存储结构，通常包括内存中的 MemTable 和磁盘上的多个层级的文件（如 LevelDB 中的 SSTable）。当 MemTable 达到一定大小时，它会被冻结并写入磁盘，形成一个新的层级文件。在 MemTable 被冻结并写入磁盘之后，如果其中的键（key）在后续的层级文件中被删除且不做合">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-03-26T18:53:49.000Z">
-<meta property="article:modified_time" content="2025-03-26T19:10:11.310Z">
+<meta property="article:modified_time" content="2025-03-26T20:15:44.039Z">
 <meta property="article:author" content="Kche">
 <meta name="twitter:card" content="summary">
     
@@ -154,7 +154,8 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h3 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h3><p>在 LSM 树中，数据被组织成多个层级的存储结构，通常包括内存中的 MemTable 和磁盘上的多个层级的文件（如 LevelDB 中的 SSTable）。当 MemTable 达到一定大小时，它会被冻结并写入磁盘，形成一个新的层级文件。在 MemTable 被冻结并写入磁盘之后，如果其中的键（key）在后续的层级文件中被删除，那么在扫描（scan）数据时，这些已经被删除的键仍然有可能被读取到。这是因为删除操作可能没有被正确地传播到所有的层级文件中，导致旧版本的数据仍然可见。</p>
+    <p>最近在做Mini-LSM，在实现过程中，遇到了些小问题</p>
+<h3 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h3><p>在 LSM 树中，数据被组织成多个层级的存储结构，通常包括内存中的 MemTable 和磁盘上的多个层级的文件（如 LevelDB 中的 SSTable）。当 MemTable 达到一定大小时，它会被冻结并写入磁盘，形成一个新的层级文件。在 MemTable 被冻结并写入磁盘之后，如果其中的键（key）在后续的层级文件中被删除且<strong>不做合适的处理</strong>，那么在扫描（scan）数据时，这些已经被删除的键仍然有可能被读取到。这是因为删除操作可能没有被正确地传播到所有的层级文件中，导致旧版本的数据仍然可见。</p>
 <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><ol>
 <li>在下层的两个 iterator（迭代器）进行扫描时，必须将被删除的键也包含在迭代过程中。</li>
 <li>在合并（merge）的过程中，由于会优先访问最新的层级文件，因此可以检查键是否在最新的层级文件中被删除。</li>
